@@ -9,10 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['profile.edit']);
+    }
+
     public function show(Profile $profile){
         $profile = User::findOrFail($profile->id);
         $follows = $profile->follows;
 
         return view('profile.home', compact('follows', 'profile'));
+    }
+    public function edit(Profile $profile){
+        return $profile;
     }
 }
