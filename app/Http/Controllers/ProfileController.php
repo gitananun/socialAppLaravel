@@ -10,12 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function show(Profile $profile){
+        $profile = User::findOrFail($profile->id);
+        $follows = $profile->follows;
 
-        $follows = User::findOrFail($profile->id)->follows;;
-//        $tweets = [];
-//        foreach (Auth::user()->follows as $follow){
-//            $tweets[] = $follow->tweets()->latest()->first();
-//        }
-        return view('profile.home', compact('follows'));
+        return view('profile.home', compact('follows', 'profile'));
     }
 }
