@@ -119,6 +119,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -127,6 +132,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showForm: function showForm() {
+      this.status = !this.status;
+    },
+    showDeleteForm: function showDeleteForm() {
       this.status = !this.status;
     }
   }
@@ -618,22 +626,35 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass:
-          "bg-transparent hover:bg-blue-500 text-blue-dark font-semibold hover:text-white py-2 px-4 mb-3 border border-blue hover:border-transparent rounded-full",
-        staticStyle: { outline: "none" },
-        on: { click: _vm.showForm }
-      },
-      [
-        _vm._v(
-          "\n        " +
-            _vm._s(_vm.status ? "Close Edit Form" : "Edit Profile") +
-            "\n    "
-        )
-      ]
-    ),
+    _c("div", { staticClass: "flex justify-between" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-transparent hover:bg-blue-500 text-blue-dark font-semibold hover:text-white py-2 px-4 mb-3 border border-blue hover:border-transparent rounded-full",
+          staticStyle: { outline: "none" },
+          on: { click: _vm.showForm }
+        },
+        [
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.status ? "Close Edit Form" : "Edit Profile") +
+              "\n    "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-transparent hover:bg-red-500 text-blue-dark font-semibold hover:text-white py-2 px-4 mb-3 border border-blue hover:border-transparent rounded-full",
+          staticStyle: { outline: "none" },
+          on: { click: _vm.showDeleteForm }
+        },
+        [_vm._v("\n        Delete Profile\n    ")]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -650,39 +671,25 @@ var render = function() {
           "pb-4 w-full max-w-xxl bg-white border hover:border-blue-400 rounded px-4 pt-6 pb-8 mb-4",
         attrs: { id: "edit-form" }
       },
-      [_vm._t("default"), _vm._v(" "), _vm._m(0)],
+      [
+        _vm._t("default"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-gray-500 mt-3 hover:bg-gray-700 text-white block font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
+            attrs: { type: "button" },
+            on: { click: _vm.showForm }
+          },
+          [_vm._v("\n            Discard\n        ")]
+        )
+      ],
       2
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex items-center" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline",
-          attrs: { type: "button" }
-        },
-        [_vm._v("\n                Save Changes\n            ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
-          attrs: { type: "button" }
-        },
-        [_vm._v("\n                Discard\n            ")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
