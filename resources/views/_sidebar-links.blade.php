@@ -34,4 +34,11 @@
             Profile
         </a>
     </li>
+    <li>
+        <form action="{{ route('logout', \Illuminate\Support\Facades\Auth::user()) }}" method="Post">
+            @csrf
+            <input type='submit' value="Logout" class="font-bold text-lg mb-4 block cursor-pointer">
+        </form>
+
+    </li>
 </ul>

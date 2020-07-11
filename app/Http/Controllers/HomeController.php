@@ -26,7 +26,7 @@ class HomeController extends Controller
             $follows = Auth::user()->follows;
         }
             foreach (Auth::user()->follows as $follow) {
-                if (count($follow->tweets()) > 0) {
+                if (count($follow->tweets) > 0) {
                     $tweets[] = $follow->tweets()->latest()->first();
                 }
             }
