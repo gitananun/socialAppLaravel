@@ -10,7 +10,10 @@
                 @include('profile.components._user_card')
 
                 <div class="mt-4">
+                    <div class="flex justify-between">
                     @include('profile.components._edit_form')
+                    @include('profile.components._delete_form')
+                    </div>
                     @include('_publish-tweet-panel')
                 </div>
 

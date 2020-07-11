@@ -1,7 +1,10 @@
-window.Vue = require('vue');
-import ProfileCard from './vue/ProfileCard';
+import ProfileEdit from "./vue/ProfileEdit";
+import ProfileDelete from "./vue/ProfileDelete";
 
-Vue.component('profile-card', ProfileCard)
+window.Vue = require('vue');
+
+Vue.component('profile-edit', ProfileEdit);
+Vue.component('profile-delete', ProfileDelete);
 
 new Vue({
     el: '#app',

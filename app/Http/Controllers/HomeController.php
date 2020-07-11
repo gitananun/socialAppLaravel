@@ -19,10 +19,18 @@ class HomeController extends Controller
 
     public function index()
     {
-        $follows = Auth::user()->follows;
-        foreach (Auth::user()->follows as $follow){
-            $tweets[] = $follow->tweets()->latest()->first();
+        $tweets = [];
+        $follows = [];
+
+        if (count(Auth::user()->follows) > 0) {
+            $follows = Auth::user()->follows;
         }
+            foreach (Auth::user()->follows as $follow) {
+                if (count($follow->tweets()) > 0) {
+                    $tweets[] = $follow->tweets()->latest()->first();
+                }
+            }
+
         return view('home', compact('tweets', 'follows'));
     }
 
@@ -34,7 +42,7 @@ class HomeController extends Controller
         if ($tweet->save()){
             return redirect()->route('home')->with('msg', 'You just tweeted successfully!');
         }else{
-            return redirect()->route('tweet.publish')->with('msg', 'Something went wrong :(');
+            return redirect()->route('tweet.publish')->with('error', 'Something went wrong :(');
         }
     }
 

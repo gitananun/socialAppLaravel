@@ -1,6 +1,6 @@
 @if(\Illuminate\Support\Facades\Auth::id() == $profile->id && \Illuminate\Support\Facades\Auth::user()->mail == $profile->mail)
 
-    <profile-card>
+    <profile-edit>
         <form action="{{ route('profile.update', \Illuminate\Support\Facades\Auth::user()) }}" method="POST">
             @method('PUT')
             @csrf
@@ -38,7 +38,7 @@
                 </button>
             </div>
         </form>
-    </profile-card>
+    </profile-edit>
 
 
 @endif

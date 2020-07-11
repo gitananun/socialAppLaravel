@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteAccountRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Profile;
 use App\User;
@@ -13,7 +14,8 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['profile.edit', 'auth'])->except('show');
+        $this->middleware(['profile.edit'])->except('show');
+        $this->middleware(['auth']);
     }
 
     public function show(Profile $profile){
@@ -32,7 +34,17 @@ class ProfileController extends Controller
                 return redirect()->route('profile.home', $profile)->with('msg', 'Your Profile updated successfully!');
             }
         }else{
-            return redirect()->route('profile.home', $profile)->with('msg', 'Something went wrong. Please recheck your password!');
+            return redirect()->route('profile.home', $profile)->with('error', 'Something went wrong. Please recheck your password!');
+        }
+    }
+    public function destroy(DeleteAccountRequest $request, Profile $profile){
+        $code_format = strtolower('do_it_' . explode(' ', Auth::user()->name, 2)[0]);
+        if ($request->code == $code_format){
+            Auth::user()->delete();
+            return redirect('home');
+        }
+        else{
+            return redirect()->back()->with('error', 'Please enter a valid code!');
         }
     }
 
