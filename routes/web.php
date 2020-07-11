@@ -22,4 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweets', 'HomeController@store')->name('tweet.publish');
 Route::get('/profile/{profile}', 'ProfileController@show')->name('profile.home');
-Route::get('/profile/{profile}/edit', 'ProfileController@edit')->name('profile.edit');
+Route::put('/profile/{profile}', 'ProfileController@update')->name('profile.update');

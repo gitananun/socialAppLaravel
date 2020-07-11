@@ -11,7 +11,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['profile.edit']);
+        $this->middleware(['profile.edit', 'auth']);
     }
 
     public function show(Profile $profile){

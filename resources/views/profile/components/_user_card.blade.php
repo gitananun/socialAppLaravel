@@ -18,13 +18,7 @@
                 <p class="text-gray-600">{{ $profile->created_at->diffForHumans() }}</p>
             </div>
 
-            @if(\Illuminate\Support\Facades\Auth::id() == $profile->id && \Illuminate\Support\Facades\Auth::user()->mail == $profile->mail)
-            <div>
-                <button class="bg-transparent hover:bg-blue-500 text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded-full" style="outline: none;">
-                    Edit Profile
-                </button>
-            </div>
-            @endif
+
         </div>
     </div>
 </div>
