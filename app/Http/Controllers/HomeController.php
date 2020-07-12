@@ -43,7 +43,7 @@ class HomeController extends Controller
                     $tweets[] = $follow->tweets()->latest()->first();
                 }
             }
-            $result = User::where('name', 'LIKE', '%' . $request->search . '%')->orWhere('email', 'LIKE', '%' . $request->search . '%')->paginate(3);
+            $result = User::where('name', 'LIKE', '%' . $request->search . '%')->orWhere('email', 'LIKE', '%' . $request->search . '%')->orderBy('updated_at', 'desc')->paginate(3);
             if (count($result) > 0) {
                 return view('search', compact('follows', 'result'));
             } else {
