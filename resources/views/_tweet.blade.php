@@ -7,7 +7,7 @@
 
     <div>
         <a href="{{ route('profile.home', $tweet->user) }}">
-        <div class="mb-4">
+        <div class="mb-1">
         <h5 class="font-bold ">{{  $tweet->user->name }}</h5>
         <small class="text-gray-600">{{ $tweet->updated_at->diffForHumans() }}</small>
         </div>
