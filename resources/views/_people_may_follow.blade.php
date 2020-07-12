@@ -4,7 +4,7 @@
     <div class="bg-white hover:shadow-sm border hover:border-blue-400 flex rounded-full px-12 py-3">
         <a href="{{ route('profile.home', $follower) }}">
             <div class="mr-2 flex-shrink-0">
-                <img src="{{ asset('/images/pr.jpeg') }}" width="30" class="rounded-full mr-2" alt="">
+                <img src="{{ asset('/images/pr.jpeg') }}" width="50" class="rounded-full mr-2" alt="">
             </div>
         </a>
 

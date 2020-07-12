@@ -20,4 +20,11 @@ class TweetController extends Controller
             return redirect()->route('tweet.publish')->with('error', 'Something went wrong :(');
         }
     }
+    public function destroy(Tweet $tweet){
+        if ($tweet->delete()){
+            return redirect()->back()->with('msg', 'Post deleted successfully!');
+        }else{
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
 }
