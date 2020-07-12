@@ -1,7 +1,7 @@
 <div class="flex p-4 border-b border-b-gray-400">
     <a href="{{ route('profile.home', $tweet->user) }}">
     <div class="mr-2 flex-shrink-0">
-        <img src="https://i.pravatar.cc/50" class="rounded-full mr-2" alt="">
+        <img src="{{ asset('/images/pr.jpeg') }}" width="50" class="rounded-full mr-2" alt="">
     </div>
     </a>
 

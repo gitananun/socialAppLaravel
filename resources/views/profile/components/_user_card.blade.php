@@ -1,5 +1,5 @@
 <div class="max-w-lg w-full lg:max-w-full lg:flex">
-    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://i.pinimg.com/originals/97/a7/2b/97a72b363a9438a2f47279c396d2054d.jpg')" title="Woman holding a mug">
+    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url({{ asset('/images/pr.jpeg') }})" title="Woman holding a mug">
     </div>
     <div class="border-r border-b border-l border-gray-400 lg:border-l-0 w-full lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
         <div class="mb-8">
@@ -17,8 +17,14 @@
                 <p class="text-blue-500 leading-none">Joined Tweet 🥳</p>
                 <p class="text-gray-600">{{ $profile->created_at->diffForHumans() }}</p>
             </div>
-
-
+            @if(\Illuminate\Support\Facades\Auth::id() !== $profile->id)
+                <form action="{{ route('profile.follow', $profile) }}" method="Post">
+                    @csrf
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full border hover:bg-transparent hover:text-blue-500 hover:border-blue-500" style="outline: none" type="submit">
+                        {{ \Illuminate\Support\Facades\Auth::user()->follows->contains('id', $profile->id) ? 'Unfollow' : 'Follow' }}
+                    </button>
+                </form>
+            @endif
         </div>
     </div>
 </div>

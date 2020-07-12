@@ -1,6 +1,4 @@
-@if(\Illuminate\Support\Facades\Auth::id() == $profile->id && \Illuminate\Support\Facades\Auth::user()->mail == $profile->mail)
-
-    <profile-delete>
+ <profile-delete>
         <form action="{{ route('profile.destroy', \Illuminate\Support\Facades\Auth::user()) }}" method="POST">
             @method('DELETE')
             @csrf
@@ -29,5 +27,4 @@
                 </button>
             </div>
         </form>
-    </profile-delete>
-@endif
+ </profile-delete>

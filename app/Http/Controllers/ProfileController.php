@@ -9,20 +9,21 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['profile.edit'])->except('show');
+        $this->middleware(['profile.edit'])->except(['show', 'follow']);
         $this->middleware(['auth']);
     }
 
     public function show(Profile $profile){
+        $people_may_follow = Profile::all()->random(2)->except('id', Auth::id());
         $profile = User::findOrFail($profile->id);
         $follows = $profile->follows;
-
-        return view('profile.home', compact('follows', 'profile'));
+        return view('profile.home', compact('follows', 'profile', 'people_may_follow'));
     }
 
     public function update(UpdateProfileRequest $request, Profile $profile){
@@ -45,6 +46,20 @@ class ProfileController extends Controller
         }
         else{
             return redirect()->back()->with('error', 'Please enter a valid code!');
+        }
+    }
+
+    public function follow(Profile $profile){
+        if (Auth::user()->follows->contains('id', $profile->id)){
+            if (Auth::user()->follows()->detach($profile)){
+                return redirect()->route('profile.home', $profile);
+            }
+        }else {
+            if (Auth::user()->follows()->save($profile)) {
+                return redirect()->route('profile.home', $profile);
+            } else {
+                return redirect()->route('profile.home', Auth::user());
+            }
         }
     }
 

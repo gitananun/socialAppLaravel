@@ -20,7 +20,7 @@
         </div>
         <footer class="flex justify-between">
             <div class="flex">
-            <img src="https://i.pravatar.cc/40" class="rounded-full mr-2" alt="">
+            <img src="{{ asset('/images/pr.jpeg') }}" width="40" class="rounded-full mr-2" alt="">
             <span class="text-gray-600 pt-2">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
             </div>
             <button type="submit" class="bg-blue-500 rounded-lg shadow py-2 px-2 text-white" style="outline: none">Tweet-a-roo!</button>

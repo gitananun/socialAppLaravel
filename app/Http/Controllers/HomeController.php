@@ -30,21 +30,10 @@ class HomeController extends Controller
                     $tweets[] = $follow->tweets()->latest()->first();
                 }
             }
-
         return view('home', compact('tweets', 'follows'));
     }
 
-    public function store(PostTweetRequest $request){
-        $tweet = new Tweet();
-        $tweet->body = $request->body;
-        $tweet->user_id = Auth::id();
 
-        if ($tweet->save()){
-            return redirect()->route('home')->with('msg', 'You just tweeted successfully!');
-        }else{
-            return redirect()->route('tweet.publish')->with('error', 'Something went wrong :(');
-        }
-    }
 
 
 }

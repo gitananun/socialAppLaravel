@@ -10,19 +10,26 @@
                 @include('profile.components._user_card')
 
                 <div class="mt-4">
-                    <div class="flex justify-between">
-                    @include('profile.components._edit_form')
-                    @include('profile.components._delete_form')
+                    @if(\Illuminate\Support\Facades\Auth::id() == $profile->id && \Illuminate\Support\Facades\Auth::user()->mail == $profile->mail)
+                        <div class="flex justify-between">
+                            @include('profile.components._edit_form')
+                            @include('profile.components._delete_form')
+                        </div>
+                            @include('_publish-tweet-panel')
+
+                        @include('_people_may_follow')
+                    @endif
+                </div>
+
+                @if(count($profile->tweets) > 0)
+                    <div class="border border-gray-300 rounded-lg">
+                        @foreach($profile->tweets as $tweet)
+                            @include('profile.components._tweet')
+                        @endforeach
                     </div>
-                    @include('_publish-tweet-panel')
-                </div>
+                @endif
 
-                <div class="border border-gray-300 rounded-lg">
 
-                @foreach($profile->tweets as $tweet)
-                    @include('profile.components._tweet')
-                @endforeach
-                </div>
             </div>
 
             <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4">

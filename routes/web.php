@@ -20,7 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/tweets', 'HomeController@store')->name('tweet.publish');
+Route::post('/tweets', 'TweetController@store')->name('tweet.publish');
 Route::get('/profile/{profile}', 'ProfileController@show')->name('profile.home');
 Route::put('/profile/{profile}', 'ProfileController@update')->name('profile.update');
 Route::delete('/profile/{profile}', 'ProfileController@destroy')->name('profile.destroy');
+Route::post('/profile/{profile}', 'ProfileController@follow')->name('profile.follow');
